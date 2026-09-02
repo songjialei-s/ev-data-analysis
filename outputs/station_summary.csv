@@ -1,6 +1,9 @@
-station_id,station_name,district,pile_count,coverage_days,order_count,charging_kwh,revenue,avg_order_value,avg_charging_duration_hours,orders_per_pile,revenue_per_pile,equipment_utilization_rate,utilization_anomaly
-S001,Central Plaza Station,Downtown,12,7,9,325.4,455.56,50.6178,1.287,0.1071,37.9633,0.0057,False
-S002,Riverside Station,Riverside,10,7,8,339.9,475.86,59.4825,1.4896,0.1143,47.586,0.0071,False
-S003,Tech Park Station,High-Tech Zone,16,7,7,299.3,419.02,59.86,1.4524,0.0625,26.1888,0.0038,False
-S004,South Railway Station,South District,20,7,6,330.6,462.84,77.14,1.75,0.0429,23.142,0.0031,False
-S005,Airport Service Station,Airport District,8,7,5,188.0,263.2,52.64,1.2333,0.0893,32.9,0.0046,False
+station_id,station_name,district,pile_count,fast_pile_count,slow_pile_count,open_date,order_count,charging_kwh,charging_fee_revenue,service_fee_revenue,revenue,avg_order_value,avg_charging_duration_hours,total_charging_hours,coverage_days,orders_per_pile,revenue_per_pile,revenue_per_kwh,equipment_utilization_rate,utilization_anomaly
+S001,Central Plaza Station,Downtown,12,8,4,2024-03-15,30,1188.0,1520.64,261.36,1782.0,59.4,1.4972,44.9167,30,0.0833,148.5,1.5,0.0052,False
+S002,Riverside Station,Riverside,10,6,4,2024-06-01,25,1031.0,1237.2,226.82,1464.02,58.5608,1.3353,33.3833,30,0.0833,146.402,1.42,0.0046,False
+S003,Tech Park Station,High-Tech Zone,16,12,4,2023-11-20,28,1250.0,1562.64,275.0,1837.64,65.63,1.4833,41.5333,30,0.0583,114.8525,1.4701,0.0036,False
+S004,South Railway Station,South District,20,16,4,2024-01-10,20,778.0,918.04,171.16,1089.2,54.46,1.335,26.7,30,0.0333,54.46,1.4,0.0019,False
+S005,Airport Service Station,Airport District,8,8,0,2025-02-18,18,703.0,949.14,154.66,1103.8,61.3222,1.45,26.1,30,0.075,137.975,1.5701,0.0045,False
+S006,University Town Station,University District,6,2,4,2025-04-08,16,759.0,872.85,166.98,1039.83,64.9894,1.2594,20.15,30,0.0889,173.305,1.37,0.0047,False
+S007,East Logistics Station,East Industrial Zone,18,14,4,2024-09-12,12,486.0,563.76,106.92,670.68,55.89,1.3222,15.8667,30,0.0222,37.26,1.38,0.0012,False
+S008,Lakeside Community Station,Lakeside District,4,2,2,2025-06-16,31,1254.0,1630.2,275.88,1906.08,61.4865,1.3715,42.5167,30,0.2583,476.52,1.52,0.0148,False

@@ -4,18 +4,19 @@ unknown_station_id,1,exclude from core analysis
 unknown_user_id,1,exclude from core analysis
 missing_or_invalid_datetime,1,exclude from core analysis
 end_time_not_after_start_time,1,exclude from core analysis
-nonpositive_or_missing_charging_kwh,2,exclude from core analysis
-negative_or_missing_total_amount,2,exclude from core analysis
+nonpositive_or_missing_charging_kwh,1,exclude from core analysis
+negative_or_missing_total_amount,1,exclude from core analysis
+fee_components_do_not_match_total,2,exclude from core analysis
 missing_order_id,0,review; critical fields are excluded from core analysis
 missing_station_id,0,review; critical fields are excluded from core analysis
 missing_user_id,0,review; critical fields are excluded from core analysis
 missing_start_time,0,review; critical fields are excluded from core analysis
 missing_end_time,1,review; critical fields are excluded from core analysis
-missing_charging_kwh,1,review; critical fields are excluded from core analysis
+missing_charging_kwh,0,review; critical fields are excluded from core analysis
 missing_charging_fee,0,review; critical fields are excluded from core analysis
 missing_service_fee,0,review; critical fields are excluded from core analysis
 missing_total_amount,0,review; critical fields are excluded from core analysis
 missing_order_status,0,review; critical fields are excluded from core analysis
 non_completed_order,2,exclude from core analysis
-valid_completed_orders,35,included in core analysis
+valid_completed_orders,180,included in core analysis
 station_utilization_outside_0_to_1,0,flag and clip displayed rate to the 0-1 range
