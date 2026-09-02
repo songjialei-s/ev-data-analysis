@@ -1,0 +1,13 @@
+user_id,register_date,user_type
+U001,2025-01-05,individual
+U002,2025-02-14,individual
+U003,2025-03-22,fleet
+U004,2025-04-10,individual
+U005,2025-05-18,ride_hailing
+U006,2025-06-06,individual
+U007,2025-07-12,fleet
+U008,2025-08-01,individual
+U009,2025-09-19,ride_hailing
+U010,2025-10-03,individual
+U011,2026-01-11,fleet
+U012,2026-03-26,individual

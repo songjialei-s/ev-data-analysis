@@ -1,0 +1,6 @@
+station_id,station_name,district,pile_count,fast_pile_count,slow_pile_count,open_date
+S001,Central Plaza Station,Downtown,12,8,4,2024-03-15
+S002,Riverside Station,Riverside,10,6,4,2024-06-01
+S003,Tech Park Station,High-Tech Zone,16,12,4,2023-11-20
+S004,South Railway Station,South District,20,16,4,2024-01-10
+S005,Airport Service Station,Airport District,8,8,0,2025-02-18

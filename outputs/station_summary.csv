@@ -1,0 +1,6 @@
+station_id,station_name,district,pile_count,coverage_days,order_count,charging_kwh,revenue,avg_order_value,avg_charging_duration_hours,orders_per_pile,revenue_per_pile,equipment_utilization_rate,utilization_anomaly
+S001,Central Plaza Station,Downtown,12,7,9,325.4,455.56,50.6178,1.287,0.1071,37.9633,0.0057,False
+S002,Riverside Station,Riverside,10,7,8,339.9,475.86,59.4825,1.4896,0.1143,47.586,0.0071,False
+S003,Tech Park Station,High-Tech Zone,16,7,7,299.3,419.02,59.86,1.4524,0.0625,26.1888,0.0038,False
+S004,South Railway Station,South District,20,7,6,330.6,462.84,77.14,1.75,0.0429,23.142,0.0031,False
+S005,Airport Service Station,Airport District,8,7,5,188.0,263.2,52.64,1.2333,0.0893,32.9,0.0046,False
