@@ -1,8 +1,40 @@
 # EV Charging Station Operations Analysis
 
-一个使用 Python、Pandas、SQLite、SQL 和 Matplotlib 构建的新能源汽车充电站运营分析项目。项目从原始 CSV 出发，完成数据质量检查、有效订单筛选、多维运营分析、站点动态分类，并自动生成可追溯的业务结论。
+一个使用 Python、Pandas、SQLite、SQL 和 Matplotlib 构建的新能源汽车充电站运营分析项目。项目现已增加真实订单的数据理解、质量扫描、隐私保护与可复现清洗层；原有合成 CSV 流程继续作为公开演示和回归测试使用。
 
-当前为第三阶段版本，在第二阶段 **SQL + 用户分析 + 收益分析 + 异常站点识别** 的基础上，新增星型模型、Power BI 标准化数据层、模型验证和三页报表设计。仓库暂不包含 `.pbix`、Web、机器学习或预测模型。
+仓库不会公开原始业务 Excel 或完整的真实订单明细。公开内容只包含清洗代码、规则与字段文档、聚合质量结果，以及 100 条完全合成的安全样例。原有第三阶段星型模型与 Power BI 数据准备代码仍被保留，但真实数据清洗阶段不会继续生成或声称完成新的 BI 看板。
+
+## Real-data cleaning milestone
+
+对一份 52,765 行、53 字段的真实订单工作簿完成了只读质量扫描：
+
+- `orderNum` 全部非空且唯一，可作为业务主键。
+- 仅排除 222 条无法形成充电事实的零时长、零电量启动记录。
+- 形成 52,543 条本地可信事实记录，但完整明细不进入 Git。
+- 1,959 条有时长但零电量的运营尝试被保留并打标，而不是删除。
+- 未支付、SOC 缺失/倒挂和异常停止原因均保留为分析对象。
+- 总费用与电费、服务费完全守恒，容差为 0.01 元。
+- 用户号、卡号、车牌、VIN、企业、部门及内部业务编号不进入公开明细。
+
+相关文件：
+
+- `src/clean_real_data.py`：真实 Excel 清洗与隐私控制脚本。
+- `docs/cleaning_rules.md`：排除规则、保留规则与业务理由。
+- `docs/data_dictionary.md`：53 个源字段的数据字典和公开边界。
+- `outputs/real_data_quality_report.csv`：聚合质量结果。
+- `outputs/real_data_missing_summary.csv`：聚合缺失情况。
+- `outputs/end_reason_summary.csv`：停止原因聚合分布。
+- `data/clean_sample.csv`：100 条完全合成样例，不来自真实明细。
+
+真实原始文件应只存放于被忽略的 `data/raw/`，行级清洗结果应只写入 `data/private_processed/`。运行清洗脚本时还必须提供一个不进入 Git 的本地盐文件：
+
+```bash
+python src/clean_real_data.py data/raw/private_orders.xlsx \
+  --salt-file local_secret.salt \
+  --output-dir data/private_processed
+```
+
+原始业务数据因个人隐私、车辆信息和企业业务安全原因不公开。即使经过哈希去标识化，完整行级事实表仍被视为私有业务资产。
 
 ## Analysis Workflow
 
@@ -44,7 +76,7 @@ Power BI page design and DAX measures
 
 ## Dataset
 
-仓库包含合成示例数据，用于演示完整分析方法，不代表真实企业经营数据：
+仓库原有三张 CSV 是合成示例数据，用于演示旧版完整分析方法，不代表真实企业经营数据，也不得与上述真实数据质量结论混用：
 
 - `data/stations.csv`：8 个站点，包含区域、总桩数、快慢充桩数和开站日期。
 - `data/users.csv`：20 个用户，包含注册日期和用户类型。

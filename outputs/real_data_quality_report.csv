@@ -1,0 +1,10 @@
+metric,value,business_rule
+raw_rows,52765,Source workbook data rows
+unique_order_keys,52765,orderNum is populated and unique
+excluded_rows,222,Only invalid keys or non-positive canonical duration are excluded
+clean_rows,52543,Trusted private fact rows after hard exclusions
+retained_zero_energy_sessions,1959,Operational attempts remain analyzable
+retained_unpaid_rows,62,Payment status is not a validity rule
+retained_soc_missing_rows,1964,Device-reporting quality flag
+retained_soc_reverse_rows,9,Device-reporting quality flag
+fee_balance_failures,0,Gross amount equals electricity plus service amount within 0.01

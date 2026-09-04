@@ -1,0 +1,23 @@
+field,missing_count,publication_note
+userNum,46,Sensitive source field; raw values are never published
+companyName,49658,Sensitive source field; raw values are never published
+cardNum,52765,Entirely empty and sensitive; omitted from clean fact
+carLicense,4891,Sensitive source field; raw values are never published
+carVin,5766,Sensitive source field; raw values are never published
+carMyLicense,52765,Entirely empty and sensitive; omitted from clean fact
+carDept,52765,Entirely empty and sensitive; omitted from clean fact
+chargeBeginNative,221,Auxiliary terminal field
+chargeEndNative,221,Auxiliary terminal field
+chargeTimeNative,221,Auxiliary terminal field
+beginSOC,2185,Retained and flagged
+endSOC,295,Retained and flagged
+chargingPayActual,16,Retained for settlement review
+chargingDiscount,225,Retained for settlement review
+payTime,213,Retained for payment analysis
+deptName,52761,Sensitive source field; raw values are never published
+peak2ElectricityPower,221,Optional time-of-use component
+peak2ElectricityBill,221,Optional time-of-use component
+peak2ServiceBill,221,Optional time-of-use component
+deepvalleyElectricityPower,221,Optional time-of-use component
+deepvalleyElectricityBill,221,Optional time-of-use component
+deepvalleyServiceBill,221,Optional time-of-use component

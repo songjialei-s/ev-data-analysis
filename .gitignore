@@ -203,6 +203,13 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Private charging data and locally generated row-level extracts
+data/raw/
+data/private_processed/
+outputs/private/
+*.salt
+~$*.xlsx
+
 # Ruff stuff:
 .ruff_cache/
 
