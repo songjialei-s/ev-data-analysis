@@ -1,0 +1,11 @@
+check,status,actual,expected
+fact_order_id_unique,PASS,0.0,0
+fact_station_id_matches_dim_station,PASS,0.0,0
+fact_user_id_matches_dim_user,PASS,0.0,0
+fact_date_matches_dim_date,PASS,0.0,0
+fact_order_count,PASS,180.0,180
+fact_charging_kwh_matches_phase_two,PASS,7449.0,7449.0
+fact_revenue_matches_phase_two,PASS,10893.25,10893.25
+fee_components_match_total,PASS,0.0,<= 0.01
+fact_station_user_keys_not_null,PASS,0.0,0
+dim_date_date_unique,PASS,0.0,0

@@ -9,11 +9,13 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from db import run_all_sql, write_analysis_database
+from powerbi import export_powerbi_model
 
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 OUTPUT_DIR = BASE_DIR / "outputs"
+POWERBI_OUTPUT_DIR = OUTPUT_DIR / "powerbi"
 CHART_DIR = OUTPUT_DIR / "charts"
 SQL_DIR = BASE_DIR / "sql"
 DATABASE_PATH = BASE_DIR / "ev_charging.db"
@@ -430,6 +432,14 @@ def main():
         encoding="utf-8",
     )
     save_charts(user_summary, station_classification, revenue_analysis, hourly)
+    powerbi_summary = export_powerbi_model(
+        valid_orders,
+        stations,
+        users,
+        user_summary,
+        station_classification,
+        POWERBI_OUTPUT_DIR,
+    )
 
     print("\n=== Overall Metrics ===")
     print(overall.to_string(index=False))
@@ -441,6 +451,10 @@ def main():
     for sql_file, queries in sql_results.items():
         print(f"{sql_file}: " + ", ".join(f"{name}={len(result)} rows" for name, result in queries.items()))
     print(f"\nRaw orders: {len(raw_orders)} | Valid orders: {len(valid_orders)}")
+    print("\n=== Power BI Model ===")
+    print(
+        " | ".join(f"{name}={value}" for name, value in powerbi_summary.items())
+    )
     print(f"Database: {DATABASE_PATH}")
     print(f"Outputs: {OUTPUT_DIR}")
 
