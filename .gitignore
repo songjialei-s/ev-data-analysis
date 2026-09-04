@@ -210,6 +210,9 @@ outputs/private/
 *.salt
 ~$*.xlsx
 
+# Local analytical database; recreated from the private clean fact table
+data/private_processed/*.db
+
 # Ruff stuff:
 .ruff_cache/
 

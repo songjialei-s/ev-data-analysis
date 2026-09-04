@@ -1,0 +1,11 @@
+﻿check_name,python_value,sql_value,difference,tolerance,status
+sql_total_orders_equals_clean_rows,52543.0,52543.0,0.0,0.0,PASS
+station_orders_sum_equals_total,52543.0,52543.0,0.0,0.0,PASS
+monthly_orders_sum_equals_total,52543.0,52543.0,0.0,0.0,PASS
+hourly_orders_sum_equals_total,52543.0,52543.0,0.0,0.0,PASS
+total_charging_kwh,1530787.028,1530787.028,0.0,0.001,PASS
+total_amount_due,1432275.24,1432275.24,0.0,0.01,PASS
+total_amount_paid,1427739.86,1427739.86,0.0,0.01,PASS
+electricity_plus_service_equals_due,1432275.24,1432275.24,0.0,0.01,PASS
+user_order_sum_equals_orders_with_user,52498.0,52498.0,0.0,0.0,PASS
+end_reason_orders_equal_nonnull_reason_orders,52543.0,52543.0,0.0,0.0,PASS

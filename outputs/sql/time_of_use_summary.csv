@@ -1,0 +1,7 @@
+﻿period,charging_kwh,electricity_fee,service_fee
+peak,77631.913,47440.08,7865.8
+superpeak,0.0,0.0,0.0
+valley,206623.305,110148.94,30418.51
+normal,1246531.81,922569.84,313832.07
+peak2,0.0,0.0,0.0
+deepvalley,0.0,0.0,0.0

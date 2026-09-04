@@ -1,0 +1,14 @@
+﻿check_name,check_value,unit
+row_count,52543,count
+distinct_order_count,52543,count
+duplicate_order_rows,0,count
+missing_order_key,0,count
+missing_station,0,count
+missing_plug,0,count
+nonpositive_duration,0,count
+nonpositive_energy,1959,count
+fee_balance_failures,0,count
+soc_missing,1964,count
+soc_reverse,9,count
+unpaid_orders,62,count
+unclassified_end_reason,52543,count

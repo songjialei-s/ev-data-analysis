@@ -1,46 +1,46 @@
--- Business question: How is revenue composed, and which station revenue patterns require attention?
--- query: revenue_composition
+-- name: revenue_analysis
 SELECT
-    ROUND(SUM(charging_fee), 2) AS charging_fee_revenue,
-    ROUND(SUM(service_fee), 2) AS service_fee_revenue,
-    ROUND(SUM(total_amount), 2) AS total_revenue,
-    ROUND(SUM(service_fee) / NULLIF(SUM(total_amount), 0), 4) AS service_fee_share,
-    ROUND(AVG(total_amount), 2) AS avg_order_value,
-    ROUND(SUM(total_amount) / NULLIF(SUM(charging_kwh), 0), 4) AS revenue_per_kwh
-FROM charging_orders;
+    'overall' AS scope,
+    'ALL' AS dimension_value,
+    ROUND(SUM(chargingPay), 2) AS amount_due,
+    ROUND(SUM(CASE WHEN is_paid = 1 THEN chargingPayActual END), 2) AS amount_paid,
+    ROUND(SUM(chargingelectricityPay), 2) AS electricity_fee,
+    ROUND(SUM(chargingServicePay), 2) AS service_fee,
+    ROUND(SUM(chargingDiscount), 2) AS discount,
+    ROUND(SUM(chargingServicePay) / NULLIF(SUM(chargingPay), 0), 6) AS service_fee_share,
+    ROUND(SUM(CASE WHEN is_paid = 1 THEN chargingPayActual END) /
+          NULLIF(SUM(CASE WHEN chargingPower > 0 THEN chargingPower END), 0), 4) AS paid_amount_per_kwh,
+    ROUND(AVG(CASE WHEN is_paid = 1 THEN chargingPayActual END), 2) AS avg_paid_order_amount
+FROM clean_charging_orders;
 
--- query: station_revenue
-WITH station_metrics AS (
-    SELECT
-        s.station_id,
-        s.station_name,
-        s.pile_count,
-        COUNT(o.order_id) AS order_count,
-        SUM(o.total_amount) AS revenue,
-        AVG(o.total_amount) AS avg_order_value,
-        SUM(o.total_amount) / NULLIF(SUM(o.charging_kwh), 0) AS revenue_per_kwh
-    FROM stations s
-    LEFT JOIN charging_orders o ON s.station_id = o.station_id
-    GROUP BY s.station_id, s.station_name, s.pile_count
-), benchmarks AS (
-    SELECT AVG(order_count) AS avg_orders, AVG(revenue) AS avg_revenue,
-           AVG(avg_order_value) AS avg_order_value
-    FROM station_metrics
-)
+-- name: revenue_monthly
 SELECT
-    station_id,
-    station_name,
-    order_count,
-    ROUND(revenue, 2) AS revenue,
-    ROUND(revenue / NULLIF(pile_count, 0), 2) AS revenue_per_pile,
-    ROUND(station_metrics.avg_order_value, 2) AS avg_order_value,
-    ROUND(station_metrics.revenue_per_kwh, 4) AS revenue_per_kwh,
-    CASE
-        WHEN order_count >= avg_orders AND revenue >= avg_revenue THEN 'high_orders_high_revenue'
-        WHEN order_count >= avg_orders AND station_metrics.avg_order_value < benchmarks.avg_order_value THEN 'high_orders_low_avg_value'
-        WHEN order_count < avg_orders AND station_metrics.avg_order_value >= benchmarks.avg_order_value THEN 'low_orders_high_avg_value'
-        ELSE 'low_orders_low_revenue'
-    END AS revenue_pattern
-FROM station_metrics
-CROSS JOIN benchmarks
-ORDER BY revenue DESC;
+    charge_month AS month,
+    ROUND(SUM(chargingPay), 2) AS amount_due,
+    ROUND(SUM(CASE WHEN is_paid = 1 THEN chargingPayActual END), 2) AS amount_paid,
+    ROUND(SUM(chargingelectricityPay), 2) AS electricity_fee,
+    ROUND(SUM(chargingServicePay), 2) AS service_fee,
+    ROUND(SUM(chargingDiscount), 2) AS discount,
+    ROUND(SUM(chargingServicePay) / NULLIF(SUM(chargingPay), 0), 6) AS service_fee_share,
+    ROUND(SUM(CASE WHEN is_paid = 1 THEN chargingPayActual END) /
+          NULLIF(SUM(CASE WHEN chargingPower > 0 THEN chargingPower END), 0), 4) AS paid_amount_per_kwh,
+    ROUND(AVG(CASE WHEN is_paid = 1 THEN chargingPayActual END), 2) AS avg_paid_order_amount
+FROM clean_charging_orders
+GROUP BY charge_month
+ORDER BY charge_month;
+
+-- name: revenue_station
+SELECT
+    stationName,
+    ROUND(SUM(chargingPay), 2) AS amount_due,
+    ROUND(SUM(CASE WHEN is_paid = 1 THEN chargingPayActual END), 2) AS amount_paid,
+    ROUND(SUM(chargingelectricityPay), 2) AS electricity_fee,
+    ROUND(SUM(chargingServicePay), 2) AS service_fee,
+    ROUND(SUM(chargingDiscount), 2) AS discount,
+    ROUND(SUM(chargingServicePay) / NULLIF(SUM(chargingPay), 0), 6) AS service_fee_share,
+    ROUND(SUM(CASE WHEN is_paid = 1 THEN chargingPayActual END) /
+          NULLIF(SUM(CASE WHEN chargingPower > 0 THEN chargingPower END), 0), 4) AS paid_amount_per_kwh,
+    ROUND(AVG(CASE WHEN is_paid = 1 THEN chargingPayActual END), 2) AS avg_paid_order_amount
+FROM clean_charging_orders
+GROUP BY stationName
+ORDER BY amount_paid DESC, stationName;
